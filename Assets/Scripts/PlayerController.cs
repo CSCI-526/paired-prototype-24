@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float dashDistance = 10f;
 
+    [Header("Movement Boundaries")]
+    [SerializeField] private float minX = -20f;
+    [SerializeField] private float maxX = 20f;
+    [SerializeField] private float minZ = -20f;
+    [SerializeField] private float maxZ = 20f;
+
     [Header("Prefabs")]
     [SerializeField] private GameObject projectilePrefab;
 
@@ -64,7 +70,12 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(movement);
 
-        if(Input.GetKeyDown(KeyCode.J))
+        Vector3 clampedPosition = transform.position; ;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
+        clampedPosition.z = Mathf.Clamp(clampedPosition.z, minZ, maxZ);
+        transform.position = clampedPosition;
+
+        if (Input.GetKeyDown(KeyCode.J))
         {
             ShootProjectile();
         }
