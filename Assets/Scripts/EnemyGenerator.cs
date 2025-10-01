@@ -9,13 +9,15 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
 
     [Header("Settings")]
-    [SerializeField] private int spawnCD = 5;
+    [SerializeField] private int spawnCD = 3;
     private int spawnTimer;
+    private int currSpawnTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         spawnTimer = spawnCD * 60;
+        currSpawnTimer = spawnCD * 60;
     }
 
     // Update is called once per frame
@@ -34,7 +36,9 @@ public class EnemyGenerator : MonoBehaviour
                 loc = new Vector3(parameter, 0, (line - 2) * 15);
 
             GameObject enemy = Instantiate(enemyPrefab, loc, Quaternion.identity);
-            spawnTimer = spawnCD * 60;
+            if (currSpawnTimer > 30)
+                currSpawnTimer--;
+            spawnTimer = currSpawnTimer;
         }
     }
 }
