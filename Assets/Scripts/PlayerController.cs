@@ -162,6 +162,13 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateWeaponUI()
     {
+        if(red == null || green == null || blue == null)
+        {
+            red = GameObject.Find("Red").GetComponent<Image>();
+            green = GameObject.Find("Green").GetComponent<Image>();
+            blue = GameObject.Find("Blue").GetComponent<Image>();
+        }
+
         red.color = new Color(1, 0, 0, 0.3f + activeWeapon[0] * 0.7f);
         green.color = new Color(0, 1, 0, 0.3f + activeWeapon[1] * 0.7f);
         blue.color = new Color(0, 0, 1, 0.3f + activeWeapon[2] * 0.7f);

@@ -35,7 +35,15 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
-            Destroy(other.gameObject);
+            GameStateManager gameStateManager = FindObjectOfType<GameStateManager>();
+            if (gameStateManager != null)
+            {
+                gameStateManager.EndGame();
+            }
+            else
+            {
+                Debug.LogWarning("No GameStateManager found in the scene!");
+            }
             Debug.Log("Game Over!");
         }
         

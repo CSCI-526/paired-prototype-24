@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Transform target;
-    private Vector3 offset;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        offset = transform.position - target.position;
-    }
+    [SerializeField] private Vector3 offset;
+    private GameObject target;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.position + offset;
+        if(target == null)
+        {
+            PlayerController controller = FindObjectOfType<PlayerController>();
+            if(controller != null)
+            {
+                target = controller.gameObject;
+            }
+        }
+
+        if(target != null)
+        {
+            transform.position = target.transform.position + offset;
+        }
+
     }
 }
