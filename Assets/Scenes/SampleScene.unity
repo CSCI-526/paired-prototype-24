@@ -257,7 +257,7 @@ MonoBehaviour:
   red: {fileID: 1603230247}
   green: {fileID: 609834737}
   blue: {fileID: 1740301176}
-  penalty: 3
+  penalty: 5
 --- !u!54 &264367309
 Rigidbody:
   m_ObjectHideFlags: 0
